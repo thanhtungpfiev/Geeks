@@ -12,17 +12,30 @@
 
 using namespace std;
 
-void printNos(unsigned int n)
+template<int N>
+class PrintOneToN
 {
-    if (n > 0) {
-        printNos(n - 1);
-        cout << n << endl;
+public:
+    static void print()
+    {
+        PrintOneToN<N-1>::print();
+        cout << N << endl;
     }
-    return;
-}
+};
+
+template<>
+class PrintOneToN<1>
+{
+public:
+    static void print()
+    {
+        cout << 1 << endl;
+    }
+};
 
 int main(int argc, char *argv[])
 {
-    printNos(20);
+    const int N = 20;
+    PrintOneToN<N>::print();
     return 0;
 }
