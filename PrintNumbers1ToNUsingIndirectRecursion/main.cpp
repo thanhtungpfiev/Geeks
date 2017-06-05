@@ -12,36 +12,17 @@
 
 using namespace std;
 
-#define N 20
-
-int n = 1;
-
-void func2();
-
-void func1()
+void printNos(unsigned int n)
 {
-    if (n <= N) {
+    if (n > 0) {
+        printNos(n - 1);
         cout << n << endl;
-        n++;
-        func2();
-    } else {
-        return;
     }
-}
-
-void func2()
-{
-    if (n <= N) {
-        cout << n << endl;
-        n++;
-        func1();
-    } else {
-        return;
-    }
+    return;
 }
 
 int main(int argc, char *argv[])
 {
-    func1();
+    printNos(20);
     return 0;
 }
