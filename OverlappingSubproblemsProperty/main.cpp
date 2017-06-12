@@ -9,21 +9,39 @@
  *
  *
  */
-#include <iostream>
+/* C/C++ program for Memoized version for nth Fibonacci number */
+#include<stdio.h>
+#define NIL -1
+#define MAX 100
 
-using namespace std;
+int lookup[MAX];
 
-/* simple recursive program for Fibonacci numbers */
-int fib(int n)
+/* Function to initialize NIL values in lookup table */
+void _initialize()
 {
-   if (n <= 1) {
-       return n;
-   }
-   return fib(n - 1) + fib(n - 2);
+  int i;
+  for (i = 0; i < MAX; i++)
+    lookup[i] = NIL;
 }
 
-int main(int argc, char *argv[])
+/* function for nth Fibonacci number */
+int fib(int n)
 {
-    cout << fib(40) << endl;
-    return 0;
+   if (lookup[n] == NIL)
+   {
+      if (n <= 1)
+         lookup[n] = n;
+      else
+         lookup[n] = fib(n-1) + fib(n-2);
+   }
+
+   return lookup[n];
+}
+
+int main ()
+{
+  int n = 40;
+  _initialize();
+  printf("Fibonacci number is %d ", fib(n));
+  return 0;
 }
